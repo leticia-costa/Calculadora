@@ -3,7 +3,6 @@ import java.sql.DriverManager; //importando a ponte entre o bancoe o código
 
 public class DatabaseConnection {
     Connection con = null; // variavel de conexão
-
     public Connection GetConnection(){
         //função responsável pela conexão
         try{
