@@ -13,7 +13,7 @@ public class DatabaseConnection {
                 con = null;
                 return GetConnection();
                 // caso a conexão esteja fechada ele tenta se reconectar
-          }
+            }
         }
         catch(Exception e){
             System.out.println(e);

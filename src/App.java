@@ -3,7 +3,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Map;
 
-
 public class App {
     public static void main(String[] args) {
         String queryResultGenero;
@@ -15,10 +14,10 @@ public class App {
             DatabaseConnection dbConnection = new DatabaseConnection(); // criação do objeto db conection
             Connection db = dbConnection.GetConnection(); // realização da conexão com o banco de dados
 
-            String inputGenero = "F";
-            double inputIdade = 0.08;
-            double inputAltura = 72.4;
-            double inputPeso = 10.9;
+            String inputGenero = "M";
+            double inputIdade = 0.02;
+            double inputAltura = 57.1;
+            double inputPeso = 0.8;
 
             String queryGenero = "SELECT * FROM dados_calculadora WHERE genero = '"+inputGenero+"' AND idade = "+inputIdade;
 
@@ -37,21 +36,17 @@ public class App {
                 double calcIMC = (inputPeso/((inputAltura*inputAltura)/100)*100);
 
                 Map<String, Boolean> CrescimentoInfantil = ChildGrowthDictionary
-                    .getDictionary(calcIMC, queryResultIdade);
+                    .getDictionary(calcIMC, queryResultIdade, queryResultGenero);
                 
                 for (String key : CrescimentoInfantil.keySet()) {
                     if (CrescimentoInfantil.get(key)){
                         System.out.println(key);
-                        System.out.printf("Seu IMC é: %.2f", calcIMC);
+                        System.out.printf("Seu IMC é: %.2f\n", calcIMC);
                     }
                 }
-                
-            
             }
-
         } catch (Exception e){
             System.out.println(e);
         }
-
     }
 }
